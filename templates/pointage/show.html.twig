@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title pointage.id %}
+
+
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <p></p>
+            </div>
+            <div class="col-md-4">
+                <p></p>
+            </div>
+        </div>
+
+        <p></p>
+
+        <div class="row">
+            <div class="col-md-10">
+                <h2>Détails Pointage</h2>
+                <table class="table table-striped table-bordered table-hover table-checkable">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Matricule Utilisateur</th>
+                            <th>Nom Chantier</th>
+                            <th>Date</th>
+                            <th>Durée</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td style="width: 50px">{{ pointage.id }}</td>
+                        <td style="width: 80px">{{ pointage.utilisateur.matricule }}</td>
+                        <td style="width: 100px">{{ pointage.chantier.nom }}</td>
+                        <td style="width: 100px">{{ pointage.date |date('d-m-Y') }}</td>
+                        <td style="width: 50px">{{ pointage.duree }}</td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+                <div class="text-right">
+                    <a href="{{ path('pointage.index')}}" class="btn btn-danger">Retour</a>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+
+    </div>
+{% endblock body %}
+
+
+

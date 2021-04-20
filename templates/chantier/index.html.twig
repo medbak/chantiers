@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gérer les chantiers' %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Gérer les chantiers</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                 {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped table-bordered" >
+            <thead>
+               <tr>
+                   <th>Id</th>
+                   <th>Nom</th>
+                   <th>Actions</th>
+               </tr>
+            </thead>
+
+            <tbody>
+                {% for chantier in chantiers %}
+                    <tr>
+                        <td>{{ chantier.id }}</td>
+                        <td>{{ chantier.nom }}</td>
+                        <td style="width: 600px">
+
+                            <a href="{{ path('chantier.show', {id : chantier.id, slug : chantier.slug}) }}" class="btn btn-secondary">Afficher</a>
+
+                            <a href="{{ path('chantier.edit', {id : chantier.id}) }}" class="btn btn-secondary">Editer</a>
+
+                            <form method="post" action="{{ path('chantier.delete', {id : chantier.id}) }}"
+                                 onsubmit="return confirm('Êtes vous vraiement sûr, les entités en relations(pointages) vont être supprimés ? ')" style="display: inline-block">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete'~ chantier.id) }}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('chantier.create')}}" class="btn btn-primary">Créer un nouveau chantier</a>
+        </div>
+
+    </div>
+
+{% endblock body %}

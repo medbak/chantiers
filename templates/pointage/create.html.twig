@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Créer Nouveau pointage' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Créer un nouveau pointage</h2>
+        {{  include ('pointage/_form.html.twig', {form : form, button: 'Créer'}) }}
+
+    </div>
+{% endblock body %}

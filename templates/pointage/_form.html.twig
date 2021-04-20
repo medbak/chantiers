@@ -1,0 +1,29 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-3">
+        {{ form_row(form.utilisateur) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        {{ form_row(form.chantier) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        {{ form_row(form.date) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        {{ form_row(form.duree) }}
+    </div>
+</div>
+
+{{ form_rest(form) }}
+<button class="btn btn-primary">{{ button | default('Enregister') }}</button>
+<a href="{{ path('pointage.index')}}" class="btn btn-danger">Retour</a>
+{{ form_end(form) }}

@@ -1,0 +1,23 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-3">
+        {{ form_row(form.nom) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        {{ form_row(form.prenom) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        {{ form_row(form.matricule) }}
+    </div>
+</div>
+
+{{ form_rest(form) }}
+<button class="btn btn-primary">{{ button | default('Enregister') }}</button>
+<a href="{{ path('utilisateur.index')}}" class="btn btn-danger">Retour</a>
+{{ form_end(form) }}

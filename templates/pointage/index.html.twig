@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gérer les pointages' %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Gérer les pointages</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                 {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped table-bordered" >
+            <thead>
+               <tr>
+                   <th>Id</th>
+                   <th>Date</th>
+                   <th>Durée(mn)</th>
+                   <th>Actions</th>
+               </tr>
+            </thead>
+
+            <tbody>
+                {% for pointage in pointages %}
+                    <tr>
+                        <td>{{ pointage.id }}</td>
+                        <td>{{ pointage.date  |date('d-m-Y') }}</td>
+                        <td>{{ pointage.duree }}</td>
+                        <td style="width: 600px">
+
+                            <a href="{{ path('pointage.show', {id : pointage.id, slug : pointage.slug}) }}" class="btn btn-secondary">Afficher</a>
+
+                            <a href="{{ path('pointage.edit', {id : pointage.id}) }}" class="btn btn-secondary">Editer</a>
+
+                            <form method="post" action="{{ path('pointage.delete', {id : pointage.id}) }}"
+                                 onsubmit="return confirm('Êtes vous vraiement sûr ? ')" style="display: inline-block">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete'~ pointage.id) }}">
+                                <button class="btn btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('pointage.create')}}" class="btn btn-primary">Créer un nouveau pointage</a>
+        </div>
+
+    </div>
+
+{% endblock body %}
